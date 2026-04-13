@@ -1,39 +1,9 @@
-name: Terraform CI/CD
+name: Run Shared Terraform Workflow
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   terraform:
-    runs-on: ubuntu-latest
-
-    permissions:
-      id-token: write
-      contents: read
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Configure AWS credentials (OIDC)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: arn:aws:iam::656564336285:role/natalia-oidc
-          aws-region: eu-west-2
-
-      - name: Verify AWS login
-        run: aws sts get-caller-identity
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v4
-
-      - name: Terraform Init
-        run: terraform init
-
-      - name: Terraform Validate
-        run: terraform validate
-
-      - name: Terraform Plan
-        run: terraform plan -out=tfplan
+    uses: natalia-castaneda/central-CI/.github/workflows/terraform.yml@main
