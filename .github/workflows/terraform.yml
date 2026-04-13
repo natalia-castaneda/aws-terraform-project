@@ -1,0 +1,9 @@
+name: Run Shared Terraform Workflow
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  terraform:
+    uses: natalia-castaneda/central-CI/.github/workflows/terraform.yml@main
