@@ -17,6 +17,9 @@ jobs:
       AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
 
     steps:
+      - name: Verify AWS login
+        run: aws sts get-caller-identity
+        
       - name: Checkout repository
         uses: actions/checkout@v4
 
