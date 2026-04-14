@@ -7,3 +7,4 @@ on:
 jobs:
   terraform:
     uses: natalia-castaneda/central-CI/.github/workflows/terraform.yml@main
+
